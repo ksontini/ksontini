@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import { about } from "@/lib/data";
 import { MapPin, Globe, Languages, Briefcase } from "lucide-react";
 
@@ -7,6 +11,39 @@ const iconMap: Record<string, React.ReactNode> = {
   Languages: <Languages size={18} />,
   Briefcase: <Briefcase size={18} />,
 };
+
+function Photo() {
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return (
+      <div
+        className="w-full h-full flex items-center justify-center"
+        style={{
+          background: "linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)",
+        }}
+      >
+        <div className="text-center">
+          <div className="text-6xl font-extrabold mb-2" style={{ color: "var(--accent)" }}>
+            AK
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src="/photo.jpg"
+      alt="Anis Ksontini"
+      fill
+      sizes="(max-width: 768px) 256px, 320px"
+      className="object-cover object-top"
+      priority
+      onError={() => setError(true)}
+    />
+  );
+}
 
 export default function About() {
   return (
@@ -21,28 +58,10 @@ export default function About() {
           <div className="flex justify-center lg:justify-start">
             <div className="relative">
               <div
-                className="w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden"
+                className="relative w-64 h-64 lg:w-80 lg:h-80 rounded-xl overflow-hidden"
                 style={{ border: "2px solid var(--accent)" }}
               >
-                {/* Photo placeholder */}
-                <div
-                  className="w-full h-full flex items-center justify-center"
-                  style={{
-                    background: "linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)",
-                  }}
-                >
-                  <div className="text-center">
-                    <div
-                      className="text-6xl font-extrabold mb-2"
-                      style={{ color: "var(--accent)" }}
-                    >
-                      AK
-                    </div>
-                    <div className="text-sm" style={{ color: "var(--text-secondary)" }}>
-                      Photo coming soon
-                    </div>
-                  </div>
-                </div>
+                <Photo />
               </div>
               {/* Accent decoration */}
               <div

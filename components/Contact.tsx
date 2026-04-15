@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { contact } from "@/lib/data";
 import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
 
@@ -25,13 +25,22 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Contact() {
+  const loadedAtRef = useRef<number>(0);
+
   const [form, setForm] = useState({
     name: "",
     email: "",
     subject: "Job opportunity",
     message: "",
+    // honeypot — hidden from real users, filled by bots
+    _website: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  // Record when the form section was first rendered
+  useEffect(() => {
+    loadedAtRef.current = Date.now();
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -41,16 +50,27 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Client-side minimum time guard (3 s) — supplements server check
+    if (Date.now() - loadedAtRef.current < 3000) return;
+
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+          _website: form._website,         // honeypot
+          _loadedAt: loadedAtRef.current,  // timestamp
+        }),
       });
       if (res.ok) {
         setStatus("sent");
-        setForm({ name: "", email: "", subject: "Job opportunity", message: "" });
+        setForm({ name: "", email: "", subject: "Job opportunity", message: "", _website: "" });
       } else {
         setStatus("error");
       }
@@ -117,6 +137,22 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+
+                {/* ── Honeypot field — hidden from humans ─────────────────── */}
+                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }}>
+                  <label htmlFor="website_field">Website</label>
+                  <input
+                    id="website_field"
+                    name="_website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form._website}
+                    onChange={handleChange}
+                  />
+                </div>
+                {/* ────────────────────────────────────────────────────────── */}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-medium mb-1.5" style={{ color: "var(--text-secondary)" }}>
@@ -129,6 +165,7 @@ export default function Contact() {
                       value={form.name}
                       onChange={handleChange}
                       required
+                      autoComplete="name"
                       style={inputStyle}
                       onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(108,99,255,0.2)")}
@@ -145,6 +182,7 @@ export default function Contact() {
                       value={form.email}
                       onChange={handleChange}
                       required
+                      autoComplete="email"
                       style={inputStyle}
                       onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
                       onBlur={(e) => (e.target.style.borderColor = "rgba(108,99,255,0.2)")}
