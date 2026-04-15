@@ -253,7 +253,7 @@ export const articles: Article[] = [
 export const contact = {
   headline: "Let's build something that works.",
   subtext:
-    "I'm open to Tech Lead and Solution Architect roles with remote-friendly European teams, as well as advisory engagements and fractional CTO conversations.",
+    "I collaborate with European teams on backend architecture and technical leadership — consulting, advisory, and fractional CTO engagements welcome.",
   social: [
     { label: "LinkedIn", url: "https://linkedin.com/in/ksontini", icon: "Linkedin" },
     { label: "GitHub", url: "https://github.com/ksontini", icon: "Github" },
