@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
 
     // ── Send email ───────────────────────────────────────────────
     await resend.emails.send({
-      from: "ksontini.me <contact@ksontini.me>",
+      from: "Anis Ksontini <onboarding@resend.dev>",
       to: "anis@ksontini.me",
       replyTo: email.trim(),
       subject: `[ksontini.me] ${subject ?? "Contact"} — from ${name.trim()}`,
