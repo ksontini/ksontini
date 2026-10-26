@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hi, I'm Anis Ksontini 
 
-## Getting Started
+**Senior Backend Engineer · Tech Lead · Solution Architect** — based in Tunisia, working fully remote.
 
-First, run the development server:
+17+ years building B2B SaaS, ERP and enterprise backend systems. I design architectures that hold up in production, lead teams that ship, and stay hands-on with the code.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### What I work on
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Backend & architecture** — distributed systems, API design, modular monoliths, migrations of legacy platforms
+- **Business software** — ERP, PMS, channel managers, invoicing and compliance (e-invoicing, local fiscal rules)
+- **Applied AI** — LLM integration in business workflows, MCP servers exposing business data to AI agents
+- **Delivery** — CI/CD, code quality, technical leadership and mentoring
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`PHP / Symfony` · `Node.js` · `Python` · `Go` · `Flutter` · `PostgreSQL` · `MySQL` · `Docker` · `CI/CD` · `Linux`
 
-## Learn More
+### Background
 
-To learn more about Next.js, take a look at the following resources:
+- **Tech Lead — OpenBee** (2021 – 2026)
+- **Tech Lead — Next Web Plus** (2016 – 2021) · ERP, PMS, Channel Manager
+- **Software Engineer / Team Lead** — various companies (2009 – 2016)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Available for
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Short and mid-term remote missions: architecture reviews, legacy modernization, backend tech lead, AI integration in existing products.
 
-## Deploy on Vercel
+### Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 🌐 [ksontini.me](https://ksontini.me)
+- ✉️ anis.ksontini@gmail.com
+- 💼 [LinkedIn](https://www.linkedin.com/in/ksontini)
